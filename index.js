@@ -1,28 +1,17 @@
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+
+const index = require('./routes/index');
+
 const App = new Koa();
 
+App.use(bodyParser());
 
-const Routes = require('koa-route');
+App.use(index.routes());
+// App.use(about.routes());
 
-// App.use(async (ctx) => {
-//   ctx.body = 'Learning a new backend framework!';
-// })
+const PORT = process.env.PORT || 3000;
 
-const routes = {
-  index: async  (ctx) => {
-    ctx.body = 'This is the home-page.';
-  },
-  about: async (ctx) => {
-    ctx.body = 'This is the about-page.'
-  }
-}
-
-App.use(Routes.get('/', routes.index));
-App.use(Routes.get('/about', routes.about));
-
-
-
-const PORT = 3000;
 App.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`);
-})
+});
