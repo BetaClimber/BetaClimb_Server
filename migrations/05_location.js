@@ -2,7 +2,7 @@ exports.up = (knex) => {
 
   return knex.schema.createTableIfNotExists('location', (table) => {
     table.increments('id').primary();
-    table.string('name');
+    table.string('city').notNullable();
     table.string('address').notNullable();
   });
 };

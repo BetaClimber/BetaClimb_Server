@@ -8,7 +8,6 @@ exports.up = (knex) => {
     table.integer('note_id').references('note.id').unsigned().onDelete('cascade');
     table.integer('location_id').references('location.id').unsigned().onDelete('cascade');
     table.integer('condition_id').references('condition.id').unsigned().onDelete('cascade');
-    // table.integer('user_id').references('user.id').unsigned();
   });
 };
 
