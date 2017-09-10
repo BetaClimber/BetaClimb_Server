@@ -1,4 +1,5 @@
-const path = require('path');
+const dotEnv = require('dotenv').config();
+
 
 module.exports = {
 

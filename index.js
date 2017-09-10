@@ -6,7 +6,6 @@ const bodyParser = require('koa-bodyparser');
 const dotEnv = require('dotenv').config();
 
 app.use(bodyParser());
-app.use(dotEnv());
 
 // routes
 const index = require('./routes/index');
