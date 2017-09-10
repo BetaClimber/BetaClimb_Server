@@ -9,12 +9,14 @@ app.use(bodyParser());
 
 // routes
 const index = require('./routes/index');
-const movies = require('./routes/movies');
+const panoramic = require('./routes/panoramic');
 
 app.use(index.routes());
-app.use(movies.routes());
+app.use(panoramic.routes());
 
 const PORT = 3000 || process.env.PORT;
 const server = app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);
 });
+
+module.exports = server;
