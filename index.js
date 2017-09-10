@@ -1,17 +1,21 @@
 const Koa = require('koa');
+const app = new Koa();
+
+// middleware
 const bodyParser = require('koa-bodyparser');
+const dotEnv = require('dotenv').config();
 
+app.use(bodyParser());
+app.use(dotEnv());
+
+// routes
 const index = require('./routes/index');
+const movies = require('./routes/movies');
 
-const App = new Koa();
+app.use(index.routes());
+app.use(movies.routes());
 
-App.use(bodyParser());
-
-App.use(index.routes());
-// App.use(about.routes());
-
-const PORT = process.env.PORT || 3000;
-
-App.listen(PORT, () => {
-  console.log(`Running on port: ${PORT}`);
+const PORT = 3000 || process.env.PORT;
+const server = app.listen(PORT, () => {
+  console.log(`listening on port: ${PORT}`);
 });
