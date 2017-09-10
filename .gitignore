@@ -56,3 +56,10 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Connection
+db/connection.js
+
+# Migrations
+migrations/01_user.js
+seeds/01_user.js
