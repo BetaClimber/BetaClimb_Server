@@ -1,8 +1,8 @@
 const Router = require('koa-router');
 const router = new Router();
 
-const panoramic = require('../db/panoramics');
-const API_URL = '/panoramics';
+const panoramic = require('../db/panoramic');
+const API_URL = '/panoramic';
 
 router.get(API_URL, async(ctx) => {
   try {
@@ -69,12 +69,12 @@ router.post(`${API_URL}`, async (ctx) => {
 
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
-    const Pan = await panoramic.update(ctx.params.id, ctx.request.body);
-    if (panoramic.length) {
+    const PAN = await panoramic.update(ctx.params.id, ctx.request.body);
+    if (PAN.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
-        data: Pan
+        data: PAN
       };
     } else {
       ctx.status = 404;
@@ -93,12 +93,12 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
-    const Pan = await panoramic.delete(ctx.params.id);
-    if(panoramic.length) {
+    const PAN = await panoramic.delete(ctx.params.id);
+    if(PAN.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
-        data: Pan
+        data: PAN
       };
     } else {
       ctx.status = 404;
