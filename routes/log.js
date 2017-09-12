@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const log = await Log.get(ctx.params.id);
-    if (log.length) {
+    const log = await Log.getOne(ctx.params.id);
+    if (log) {
       ctx.body = {
         status: 'success',
         data: log
@@ -46,7 +46,7 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 router.post(`${API_URL}`, async (ctx) => {
   try {
     const log = await Log.create(ctx.request.body);
-    if (log.length) {
+    if (log) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -70,7 +70,7 @@ router.post(`${API_URL}`, async (ctx) => {
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
     const log = await Log.create(ctx.params.id, ctx.params.body);
-    if(log.length) {
+    if (log) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -94,7 +94,7 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
     const log = await Log.delete(ctx.params.id);
-    if(log.length) {
+    if (log.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',

@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const note = await Note.get(ctx.params.id);
-    if (note.length) {
+    const note = await Note.getOne(ctx.params.id);
+    if (note) {
       ctx.body = {
         status: 'success',
         data: note
@@ -46,7 +46,7 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 router.post(`${API_URL}`, async (ctx) => {
   try {
     const note = await Note.create(ctx.request.body);
-    if (note.length) {
+    if (note) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -70,7 +70,7 @@ router.post(`${API_URL}`, async (ctx) => {
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
     const note = await Note.create(ctx.params.id, ctx.params.body);
-    if(note.length) {
+    if(note) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -94,7 +94,7 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
     const route = await Note.delete(ctx.params.id);
-    if(note.length) {
+    if (note.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',

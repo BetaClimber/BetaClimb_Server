@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const route = await Route.get(ctx.params.id);
-    if (route.length) {
+    const route = await Route.getOne(ctx.params.id);
+    if (route) {
       ctx.body = {
         status: 'success',
         data: route
@@ -46,7 +46,7 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 router.post(`${API_URL}`, async (ctx) => {
   try {
     const route = await Route.create(ctx.request.body);
-    if (route.length) {
+    if (route) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -70,7 +70,7 @@ router.post(`${API_URL}`, async (ctx) => {
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
     const route = await Route.create(ctx.params.id, ctx.params.body);
-    if(route.length) {
+    if (route) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -94,7 +94,7 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
     const route = Route.delete(ctx.params.id);
-    if(route.length) {
+    if (route.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -113,6 +113,6 @@ router.delete(`${API_URL}/:id`, async (ctx) => {
       message: err.message || 'Oops, something went wrong...'
     }
   }
-})
+});
 
 module.exports = router;

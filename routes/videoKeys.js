@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const vkey = await VKey.get(ctx.params.id);
-    if (vkey.length) {
+    const vkey = await VKey.getOne(ctx.params.id);
+    if (vkey) {
       ctx.body = {
         status: 'success',
         data: vkey
@@ -46,7 +46,7 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 router.post(`${API_URL}`, async (ctx) => {
   try {
     const vkey = await VKey.create(ctx.request.body);
-    if (vkey.length) {
+    if (vkey) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -70,7 +70,7 @@ router.post(`${API_URL}`, async (ctx) => {
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
     const vkey = await VKey.create(ctx.params.id, ctx.params.body);
-    if(vkey.length) {
+    if(vkey) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',

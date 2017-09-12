@@ -1,15 +1,15 @@
 const Router = require('koa-router');
 const router = new Router();
 
-const panoramic = require('../db/panoramic');
-const API_URL = '/panoramic';
+const Condition = require('../db/condition');
+const API_URL = '/condition';
 
 router.get(API_URL, async(ctx) => {
   try {
-    const Pan = await panoramic.getAll();
+    const condition = await Condition.getAll();
     ctx.body = {
       status: 'success',
-      data: Pan
+      data: condition
     };
   } catch (err) {
     ctx.status = 404;
@@ -22,11 +22,11 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const Pan = await panoramic.get(ctx.params.id);
-    if (panoramic) {
+    const condition = await Condition.getOne(ctx.params.id);
+    if (condition) {
       ctx.body = {
         status: 'success',
-        data: Pan
+        data: condition
     };
   } else {
       ctx.status = 404;
@@ -45,12 +45,12 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 
 router.post(`${API_URL}`, async (ctx) => {
   try {
-    const Pan = await panoramic.create(ctx.request.body);
-    if (panoramic) {
+    const condition = await Condition.create(ctx.request.body);
+    if (condition.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
-        data: Pan
+        data: condition
       };
     } else {
       ctx.status = 404;
@@ -69,12 +69,12 @@ router.post(`${API_URL}`, async (ctx) => {
 
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
-    const PAN = await panoramic.update(ctx.params.id, ctx.request.body);
-    if (PAN.length) {
+    const condition = await Condition.update(ctx.params.id, ctx.request.body);
+    if (condition) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
-        data: PAN
+        data: condition
       };
     } else {
       ctx.status = 404;
@@ -93,12 +93,12 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
-    const PAN = await panoramic.delete(ctx.params.id);
-    if(PAN.length) {
+    const condition = await Condition.delete(ctx.params.id);
+    if (condition.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
-        data: PAN
+        data: condition
       };
     } else {
       ctx.status = 404;

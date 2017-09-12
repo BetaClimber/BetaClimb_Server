@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const location = await Location.get(ctx.params.id);
-    if (location.length) {
+    const location = await Location.getOne(ctx.params.id);
+    if (location) {
       ctx.body = {
         status: 'success',
         data: location
@@ -46,7 +46,7 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 router.post(`${API_URL}`, async (ctx) => {
   try {
     const location = await Location.create(ctx.request.body);
-    if (location.length) {
+    if (location) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -69,8 +69,9 @@ router.post(`${API_URL}`, async (ctx) => {
 
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
-    const location = await Location.create(ctx.params.id, ctx.params.body);
-    if(location.length) {
+    const location = await Location.update(ctx.params.id, ctx.params.body);
+    console.log(location);
+    if(location) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',

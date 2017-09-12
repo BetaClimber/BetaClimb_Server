@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const PAN = await panoramic.get(ctx.params.id);
-    if (PAN.length) {
+    const PAN = await panoramic.getOne(ctx.params.id);
+    if (PAN) {
       ctx.body = {
         status: 'success',
         data: PAN
@@ -70,7 +70,7 @@ router.post(`${API_URL}`, async (ctx) => {
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
     const PAN = await panoramic.update(ctx.params.id, ctx.request.body);
-    if (PAN.length) {
+    if (PAN) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',

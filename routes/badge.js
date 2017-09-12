@@ -6,7 +6,7 @@ const API_URL = '/badge';
 
 router.get(API_URL, async(ctx) => {
   try {
-    const Badge = await Badge.getAll();
+    const badge = await Badge.getAll();
     ctx.body = {
       status: 'success',
       data: badge
@@ -22,8 +22,8 @@ router.get(API_URL, async(ctx) => {
 
 router.get(`${API_URL}/:id`, async(ctx) => {
   try {
-    const Badge = await Badge.get(ctx.params.id);
-    if (badge.length) {
+    const badge = await Badge.getOne(ctx.params.id);
+    if (badge) {
       ctx.body = {
         status: 'success',
         data: badge
@@ -45,8 +45,8 @@ router.get(`${API_URL}/:id`, async(ctx) => {
 
 router.post(`${API_URL}`, async (ctx) => {
   try {
-    const Badge = await Badge.create(ctx.request.body);
-    if (badge.length) {
+    const badge = await Badge.create(ctx.request.body);
+    if (badge) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -69,8 +69,8 @@ router.post(`${API_URL}`, async (ctx) => {
 
 router.put(`${API_URL}/:id`, async (ctx) => {
   try {
-    const Badge = await Badge.create(ctx.params.id, ctx.params.body);
-    if(badge.length) {
+    const badge = await Badge.create(ctx.params.id, ctx.params.body);
+    if(badge) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -93,7 +93,7 @@ router.put(`${API_URL}/:id`, async (ctx) => {
 
 router.delete(`${API_URL}/:id`, async (ctx) => {
   try {
-    const Badge = await Badge.delete(ctx.params.id);
+    const badge = await Badge.delete(ctx.params.id);
     if(badge.length) {
       ctx.status = 200;
       ctx.body = {
