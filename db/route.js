@@ -5,8 +5,8 @@ module.exports = {
     return knex('route');
   },
 
-  get: (id) => {
-    return knex('route').where('id', id).first();
+  getOne: (route_id) => {
+    return knex('route').where('id', route_id).first();
   },
 
   create: (route) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (route_id) => {
-    return knex('route').where('id', route_id).del().where('id', route_id).returning('*');
+    return knex('route').del().where('id', route_id).returning('*');
   }
 }

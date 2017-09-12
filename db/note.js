@@ -5,8 +5,8 @@ module.exports = {
     return knex('note');
   },
 
-  get: (id) => {
-    return knex('note').where('id', id).first();
+  getOne: (note_id) => {
+    return knex('note').where('id', note_id).first();
   },
 
   create: (note) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (note_id) => {
-    return knex('note').where('id', note_id).del().where('id', note_id).returning('*');
+    return knex('note').del().where('id', note_id).returning('*');
   }
 }

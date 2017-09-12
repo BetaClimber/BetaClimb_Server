@@ -5,8 +5,8 @@ module.exports = {
     return knex('YTV');
   },
 
-  get: (id) => {
-    return knex('YTV').where('id', id).first();
+  getOne: (YTV_id) => {
+    return knex('YTV').where('id', YTV_id).first();
   },
 
   create: (YTV) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (YTV_id) => {
-    return knex('YTV').where('id', YTV_id).del().where('id', YTV_id).returning('*');
+    return knex('YTV').del().where('id', YTV_id).returning('*');
   }
 }

@@ -5,8 +5,8 @@ module.exports = {
     return knex('log');
   },
 
-  get: (id) => {
-    return knex('log').where('id', id).first();
+  getOne: (log_id) => {
+    return knex('log').where('id', log_id).first();
   },
 
   create: (log) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (log_id) => {
-    return knex('log').where('id', log_id).del().where('id', log_id).returning('*');
+    return knex('log').del().where('id', log_id).returning('*');
   }
 }

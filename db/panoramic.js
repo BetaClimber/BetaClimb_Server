@@ -5,8 +5,8 @@ module.exports = {
     return knex('PAN');
   },
 
-  get: (id) => {
-    return knex('PAN').where('id', id).first();
+  getOne: (panoramic_id) => {
+    return knex('PAN').where('id', panoramic_id).first();
   },
 
   create: (panoramic) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (panoramic_id) => {
-    return knex('PAN').where('id', panoramic_id).del().where('id', panoramic_id).returning('*');
+    return knex('PAN').del().where('id', panoramic_id).returning('*');
   }
 }

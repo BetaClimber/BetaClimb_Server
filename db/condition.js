@@ -2,11 +2,11 @@ const knex = require('./connection');
 
 module.exports = {
   getAll: () => {
-    return knex('PAN');
+    return knex('condition');
   },
 
-  get: (id) => {
-    return knex('condition').where('id', id).first();
+  getOne: (condition_id) => {
+    return knex('condition').where('id', condition_id).first();
   },
 
   create: (condition) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (condition_id) => {
-    return knex('conditon').where('id', condition_id).del().where('id', condition_id).returning('*');
+    return knex('condition').del().where('id', condition_id).returning('*');
   }
 }

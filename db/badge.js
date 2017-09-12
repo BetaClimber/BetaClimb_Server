@@ -5,8 +5,8 @@ module.exports = {
     return knex('badge');
   },
 
-  get: (id) => {
-    return knex('badge').where('id', id).first();
+  getOne: (badge_id) => {
+    return knex('badge').where('id', badge_id).first();
   },
 
   create: (badge) => {
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   delete: (badge_id) => {
-    return knex('badge').where('id', badge_id).del().where('id', badge_id).returning('*');
+    return knex('badge').del().where('id', badge_id).returning('*');
   }
 }
