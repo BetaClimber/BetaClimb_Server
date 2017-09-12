@@ -21,6 +21,7 @@
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
+    "objection": "^0.8.9",
     "pg": "^7.3.0"
   }
 }
