@@ -24,8 +24,8 @@ exports.up = (knex) => {
   .createTableIfNotExists('Route_Note', (table) => {
     table.increments('id').primary();
 
-    table.integer('RouteId').unsigned().references('id').inTable('Route').onDelete('CASCADE');
-    table.integer('NoteId').unsigned().references('id').inTable('Note').onDelete('CASCADE');
+    table.integer('routeId').unsigned().references('id').inTable('Route').onDelete('CASCADE');
+    table.integer('noteId').unsigned().references('id').inTable('Note').onDelete('CASCADE');
 
   });
 };
