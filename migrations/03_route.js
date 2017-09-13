@@ -3,7 +3,7 @@ exports.up = (knex) => {
   return knex.schema
   .createTableIfNotExists('Route', (table) => {
     table.increments('id').primary();
-    table.integer('parentId').unsigned().references('id').inTable('Route');
+    table.integer('parentId').unsigned().references('id').inTable('Route'); // delete me
 
     table.string('name').unique().notNullable();
     table.string('gradeType').notNullable();

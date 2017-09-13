@@ -19,6 +19,24 @@ exports.seed = (knex) => {
           unStoked: 'There were falling rocks',
           blerb: 'Blerbing about that sick crag a top the crux',
           conditionType: 'Wet'
+        },
+        {
+          radHighlights: 'This was a great experience',
+          unStoked: 'There were falling rocks',
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
+        },
+        {
+          radHighlights: 'This was a great experience',
+          unStoked: 'There were falling rocks',
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
+        },
+        {
+          radHighlights: 'This was a great experience',
+          unStoked: 'There were falling rocks',
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
         }
       ]);
     });

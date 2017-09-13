@@ -8,7 +8,7 @@ class Note extends Model {
 
   static get relationMappings() {
     return {
-      actors: {
+      routes: {
         relation: Model.ManyToManyRelation,
         modelClass: __dirname + '/Route',
         join: {

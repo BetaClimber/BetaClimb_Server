@@ -34,7 +34,8 @@ const Note = require('../models/Note');
       // we call the `skipUndefined` method. It causes the query builder methods
       // to do nothing if one of the values is undefined.
       const notes = await Route
-        // .$relatedQuery('notes');
+        .query()
+        .eager('notes');
 
       ctx.status = 200;
       ctx.body = {
@@ -46,8 +47,8 @@ const Note = require('../models/Note');
 
     const routes = await Route
       .query()
-      .allowEager('[children.[notes], notes]')
-      .eager(ctx.query.eager)
+      .debug(true)
+      .eager('notes')
       .skipUndefined();
 
       ctx.status = 200;

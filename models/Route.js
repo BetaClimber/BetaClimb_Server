@@ -18,16 +18,7 @@ class Route extends Model {
             from: 'Route_Note.routeId',
             to: 'Route_Note.noteId'
           },
-          to: 'Route.id'
-        }
-      },
-
-      parent: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Route,
-        join: {
-          from: 'Route.parentId',
-          to: 'Route.id'
+          to: 'Note.id'
         }
       }
 
