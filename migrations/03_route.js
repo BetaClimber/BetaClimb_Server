@@ -1,15 +1,37 @@
 exports.up = (knex) => {
 
-  return knex.schema.createTableIfNotExists('route', (table) => {
+  return knex.schema
+  .createTableIfNotExists('Route', (table) => {
     table.increments('id').primary();
+    table.integer('parentId').unsigned().references('id').inTable('Route');
+
     table.string('name').unique().notNullable();
     table.string('gradeType').notNullable();
     table.string('grade').notNullable();
     table.string('climbType').notNullable();
+
+  })
+  .createTableIfNotExists('Note', (table) => {
+    table.increments('id').primary();
+
+    table.string('radHighlights');
+    table.string('unStoked');
+    table.string('blerb');
+    table.string('conditionType').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
+
+  })
+  .createTableIfNotExists('Route_Note', (table) => {
+    table.increments('id').primary();
+
+    table.integer('RouteId').unsigned().references('id').inTable('Route').onDelete('CASCADE');
+    table.integer('NoteId').unsigned().references('id').inTable('Note').onDelete('CASCADE');
+
   });
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTable('route');
+  return knex.schema
+    .dropTableIfExists('Route')
+    .dropTableIfExists('Note');
 };

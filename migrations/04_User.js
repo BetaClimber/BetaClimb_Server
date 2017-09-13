@@ -8,9 +8,6 @@ exports.up = (knex) => {
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.boolean('isActive').defaultTo(true);
 
-    // foreign columns
-    table.integer('log_id').references('log.id').unsigned().onDelete('cascade');
-    table.integer('badge_id').references('badge.id').unsigned().onDelete('cascade');
   });
 };
 
