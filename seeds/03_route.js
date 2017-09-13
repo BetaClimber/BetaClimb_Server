@@ -1,7 +1,7 @@
 exports.seed = (knex) => {
-  return knex.raw('TRUNCATE route RESTART IDENTITY CASCADE;')
+  return knex.raw('TRUNCATE "Route" RESTART IDENTITY CASCADE;')
     .then(() => {
-      return knex('route').insert([
+      return knex('Route').insert([
         {
           name: 'crack of dawn',
           gradeType: 'Hueco',

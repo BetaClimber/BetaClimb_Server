@@ -1,51 +1,24 @@
 exports.seed = (knex) => {
-  return knex.raw('TRUNCATE note RESTART IDENTITY CASCADE;')
+  return knex.raw('TRUNCATE "Note" RESTART IDENTITY CASCADE;')
     .then(() => {
-      return knex('note').insert([
+      return knex('Note').insert([
         {
           radHighlights: 'This was a great experience',
           unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
         },
         {
           radHighlights: 'This was a great experience',
           unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
         },
         {
           radHighlights: 'This was a great experience',
           unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
-        },
-        {
-          radHighlights: 'This was a great experience',
-          unStoked: 'There were falling rocks',
-          blerb: 'Blerbing about that sick crag a top the crux'
+          blerb: 'Blerbing about that sick crag a top the crux',
+          conditionType: 'Wet'
         }
       ]);
     });
