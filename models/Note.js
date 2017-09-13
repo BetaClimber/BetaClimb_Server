@@ -24,4 +24,4 @@ class Note extends Model {
   }
 }
 
-module.exports = Movie;
+module.exports = Note;
