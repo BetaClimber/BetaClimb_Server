@@ -13,6 +13,18 @@ exports.seed = (knex) => {
         {
           routeId: 3,
           noteId: 3
+        },
+        {
+          routeId: 1,
+          noteId: 4
+        },
+        {
+          routeId: 2,
+          noteId: 5
+        },
+        {
+          routeId: 3,
+          noteId: 6
         }
       ]);
     });

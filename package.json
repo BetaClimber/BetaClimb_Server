@@ -20,6 +20,7 @@
     "knex": "^0.13.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-cors": "0.0.16",
     "koa-router": "^7.2.1",
     "objection": "^0.8.9",
     "pg": "^7.3.0"

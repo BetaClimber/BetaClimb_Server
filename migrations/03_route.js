@@ -3,8 +3,7 @@ exports.up = (knex) => {
   return knex.schema
   .createTableIfNotExists('Route', (table) => {
     table.increments('id').primary();
-    table.integer('parentId').unsigned().references('id').inTable('Route'); // delete me
-
+    
     table.string('name').unique().notNullable();
     table.string('gradeType').notNullable();
     table.string('grade').notNullable();
@@ -14,8 +13,8 @@ exports.up = (knex) => {
   .createTableIfNotExists('Note', (table) => {
     table.increments('id').primary();
 
-    table.string('radHighlights');
-    table.string('unStoked');
+    table.string('highlights');
+    table.string('pitfalls');
     table.string('blerb');
     table.string('conditionType').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());

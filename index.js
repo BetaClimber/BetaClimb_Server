@@ -4,6 +4,7 @@ const app = new Koa();
 // middleware
 const bodyParser = require('koa-bodyparser');
 const dotEnv = require('dotenv').config();
+var cors = require('koa-cors');
 
 // ORM and DB Query Config
 const Knex = require('knex');
@@ -15,6 +16,7 @@ Model.knex(knex);
 
 
 app.use(bodyParser());
+app.use(cors());
 
 // routes
 const climb = require('./routes/route');
