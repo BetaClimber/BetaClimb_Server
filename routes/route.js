@@ -5,21 +5,19 @@ const Route = require('../models/Route');
 const Note = require('../models/Note');
 
 
-  // transaction:
-  // You can pass relations with the route and they also get inserted.
 
-  router.post('/routes', async (ctx) => {
-    const route = await Route
+
+  router.get('/routes', async (ctx) => {
+
+    const routes = await Route
       .query()
-      .allowInsert('[children.[notes], notes, parent]')
-      .insertGraph(ctx.params.body);
+      .eager('notes')
+      .skipUndefined()
+      .orderBy('id');
 
-    ctx.status = 200;
-    ctx.body = {
-      data: route
-    };
+      ctx.status = 200;
+      ctx.body = routes;
   });
-
 
   router.get('/routes/:id/', async (ctx) => {
       const route = await Route
@@ -27,37 +25,48 @@ const Note = require('../models/Note');
         .findById(ctx.params.id);
 
       if (!route) {
-        throwNotFound();
+        throwError();
       }
 
-      // We don't need to check for the existence of the query parameters because
-      // we call the `skipUndefined` method. It causes the query builder methods
-      // to do nothing if one of the values is undefined.
       const notes = await Route
         .query()
+        .findById(ctx.params.id)
         .eager('notes');
 
       ctx.status = 200;
-      ctx.body = {
-        data: notes
-      }
+      ctx.body = notes;
   });
 
-  router.get('/routes', async (ctx) => {
+  router.post('/routes', async (ctx) => {
 
-    const routes = await Route
-      .query()
-      .debug(true)
-      .eager('notes')
-      .skipUndefined();
+    if(!ctx.request.body) {
+      throwError();
+    }
+
+    let route = await Route
+            .query()
+            .allowInsert('[notes]')
+            .insertGraph(ctx.request.body);
 
       ctx.status = 200;
-      ctx.body = {
-        data: routes
-      };
+      ctx.body = route;
   });
 
 
+  router.put('/routes/:id', async (ctx) => { //PUT not supported by objection join tables
+
+    if(!ctx.request.body) {
+      throwError();
+    }
+
+    let route = await Route
+            .query()
+            .update(ctx.request.body)
+            .where('id', ctx.params.id);
+
+      ctx.status = 200;
+      ctx.body = route;
+  });
 
   router.delete('/routes/:id', async (ctx) => {
     await Route
@@ -66,12 +75,12 @@ const Note = require('../models/Note');
 
       ctx.status = 200;
       ctx.body = {
-        data: 'deleted'
-      };
+        message: 'deleted'
+      }
   });
 
 // The error thrown by this function is handled in the error handler middleware in index.js.
-function throwNotFound() {
+function throwError() {
   ctx.status = 404;
   throw error;
 }

@@ -3,7 +3,7 @@ exports.up = (knex) => {
   return knex.schema
   .createTableIfNotExists('Route', (table) => {
     table.increments('id').primary();
-    
+
     table.string('name').unique().notNullable();
     table.string('gradeType').notNullable();
     table.string('grade').notNullable();
@@ -13,6 +13,7 @@ exports.up = (knex) => {
   .createTableIfNotExists('Note', (table) => {
     table.increments('id').primary();
 
+    table.string('title');
     table.string('highlights');
     table.string('pitfalls');
     table.string('blerb');

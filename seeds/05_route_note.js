@@ -12,14 +12,14 @@ exports.seed = (knex) => {
         },
         {
           routeId: 3,
-          noteId: 3
+          noteId: 2
         },
         {
           routeId: 1,
           noteId: 4
         },
         {
-          routeId: 2,
+          routeId: 3,
           noteId: 5
         },
         {
