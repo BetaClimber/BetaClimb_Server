@@ -5,6 +5,7 @@ exports.up = (knex) => {
     table.increments('id').primary();
 
     table.string('name').unique().notNullable();
+    table.string('location');
     table.string('gradeType').notNullable();
     table.string('grade').notNullable();
     table.string('climbType').notNullable();
@@ -17,7 +18,7 @@ exports.up = (knex) => {
     table.string('highlights');
     table.string('pitfalls');
     table.string('blerb');
-    table.string('conditionType').notNullable();
+    table.string('conditionType');
     table.timestamp('created_at').defaultTo(knex.fn.now());
 
   })
