@@ -18,11 +18,13 @@ app.use(bodyParser());
 app.use(cors());
 
 // routes
-const climb = require('./routes/route');
+const climb = require('./routes/climb');
+const route = require('./routes/route');
 const index = require('./routes/index');
 const panoramic = require('./routes/panoramic');
 const note = require('./routes/note');
 
+app.use(route.routes());
 app.use(climb.routes());
 app.use(index.routes());
 app.use(panoramic.routes());
