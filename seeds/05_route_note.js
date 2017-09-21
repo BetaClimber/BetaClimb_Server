@@ -3,7 +3,7 @@ exports.seed = (knex) => {
     .then(() => {
       return knex('Route_Note').insert([
         {
-          routeId: 1,
+          routeId: 2,
           noteId: 1
         },
         {
