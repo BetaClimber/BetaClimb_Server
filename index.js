@@ -6,10 +6,8 @@ const dotEnv = require('dotenv').config();
 var cors = require('koa-cors');
 
 const Knex = require('knex');
-const knexConfig = require('./knexfile');
 const Model = require('objection').Model;
-const knex = Knex(knexConfig.development);
-
+const knex = require('./db/connection');
 Model.knex(knex);
 
 app.use(bodyParser());
