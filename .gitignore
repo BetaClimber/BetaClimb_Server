@@ -58,9 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# Connection
-db/connection.js
-
 .DS_Store
 
 logfile
