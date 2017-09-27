@@ -29,7 +29,7 @@ app.use(panoramic.routes());
 app.use(note.routes());
 app.use(route_note.routes());
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);
 });
